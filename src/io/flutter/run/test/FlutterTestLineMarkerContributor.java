@@ -43,7 +43,7 @@ public class FlutterTestLineMarkerContributor extends RunLineMarkerContributor {
   public Info getInfo(@NotNull PsiElement element) {
     if (isTestCall(element)) {
       final Icon icon = getTestStateIcon(element);
-      final AnAction[] actions = ExecutorAction.getActions();
+      final AnAction[] actions = ExecutorAction.getActions(0); // Arg required in 2016.2
       final Function<PsiElement, String> tooltipProvider =
         psiElement -> StringUtil.join(ContainerUtil.mapNotNull(actions, action -> getText(action, element)), "\n");
       return new Info(icon, tooltipProvider, actions);

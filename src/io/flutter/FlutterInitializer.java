@@ -18,6 +18,7 @@ import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.startup.StartupActivity;
+import com.intellij.openapi.startup.StartupManager;
 import io.flutter.analytics.Analytics;
 import io.flutter.analytics.ToolWindowTracker;
 import io.flutter.android.IntelliJAndroidSdk;
@@ -113,7 +114,14 @@ public class FlutterInitializer implements StartupActivity {
   }
 
   @Override
-  public void runActivity(@NotNull Project project) {
+  public void runActivity(@NotNull final Project project) {
+    StartupManager.getInstance(project)
+      .registerPostStartupActivity(() -> {
+        runActivity1(project);
+      });
+  }
+
+  private void runActivity1(@NotNull Project project) {
     // Start watching for devices.
     DeviceService.getInstance(project);
 

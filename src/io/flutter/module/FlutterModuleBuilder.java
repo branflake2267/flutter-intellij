@@ -30,6 +30,7 @@ import io.flutter.pub.PubRoot;
 import io.flutter.sdk.FlutterSdk;
 import io.flutter.sdk.FlutterSdkUtil;
 import io.flutter.utils.FlutterModuleUtils;
+import org.jdom.JDOMException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -144,7 +145,7 @@ public class FlutterModuleBuilder extends ModuleBuilder {
         WriteAction.run(toCommit::commit);
       }
     }
-    catch (ModuleWithNameAlreadyExists | IOException e) {
+    catch (ModuleWithNameAlreadyExists | IOException | JDOMException e) {
       LOG.warn(e);
     }
   }
@@ -166,7 +167,7 @@ public class FlutterModuleBuilder extends ModuleBuilder {
     return myStep.getFlutterSdk() != null;
   }
 
-  @Override
+  @SuppressWarnings("override") // Not in 2016.2
   public boolean validateModuleName(@NotNull String moduleName) throws ConfigurationException {
 
     // See: https://www.dartlang.org/tools/pub/pubspec#name
@@ -194,7 +195,7 @@ public class FlutterModuleBuilder extends ModuleBuilder {
                                        " characters.");
     }
 
-    return super.validateModuleName(moduleName);
+    return true; //super.validateModuleName(moduleName);
   }
 
   @Nullable

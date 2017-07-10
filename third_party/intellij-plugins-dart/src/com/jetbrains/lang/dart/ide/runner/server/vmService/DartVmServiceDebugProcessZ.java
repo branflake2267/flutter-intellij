@@ -159,7 +159,7 @@ public class DartVmServiceDebugProcessZ extends DartVmServiceDebugProcess {
    * We override the parent with a no-op implementation; our preferred implementation
    * (scheduleConnectNew) is called elsewhere.
    */
-  @Override
+  @SuppressWarnings("override") // Not in 2016.2
   protected void scheduleConnect(@NotNull final String url) {
     // This page intentionally left blank.
 
@@ -299,9 +299,9 @@ public class DartVmServiceDebugProcessZ extends DartVmServiceDebugProcess {
     }
   }
 
-  @Override
+  @SuppressWarnings("override") // Not in 2016.2
   public void dropFrame(DartVmServiceStackFrame frame) {
-    myVmServiceWrapper.dropFrame(frame.getIsolateId(), frame.getFrameIndex() + 1);
+    //myVmServiceWrapper.dropFrame(frame.getIsolateId(), frame.getFrameIndex() + 1);
   }
 
   @Override

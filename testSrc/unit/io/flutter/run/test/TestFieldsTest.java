@@ -5,6 +5,7 @@
  */
 package io.flutter.run.test;
 
+import com.intellij.openapi.util.InvalidDataException;
 import io.flutter.run.test.TestFields.Scope;
 import org.jdom.Element;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class TestFieldsTest {
 
   @Test
-  public void shouldReadNameScopeFieldsFromXml() {
+  public void shouldReadNameScopeFieldsFromXml() throws InvalidDataException {
     final Element elt = new Element("test");
     addOption(elt, "testName", "should work");
     addOption(elt, "testFile", "hello_test.dart");
@@ -30,7 +31,7 @@ public class TestFieldsTest {
   }
 
   @Test
-  public void shouldReadFileScopeFieldsFromXml() {
+  public void shouldReadFileScopeFieldsFromXml() throws InvalidDataException {
     final Element elt = new Element("test");
     addOption(elt, "testFile", "hello_test.dart");
 
@@ -41,7 +42,7 @@ public class TestFieldsTest {
   }
 
   @Test
-  public void shouldReadDirectoryScopeFieldsFromXml() {
+  public void shouldReadDirectoryScopeFieldsFromXml() throws InvalidDataException {
     final Element elt = new Element("test");
     addOption(elt, "testDir", "test/dir");
 
@@ -52,7 +53,7 @@ public class TestFieldsTest {
   }
 
   @Test
-  public void roundTripShouldPreserveNameScopeSettings() {
+  public void roundTripShouldPreserveNameScopeSettings() throws InvalidDataException {
     final Element elt = new Element("test");
     TestFields.forTestName("should work", "hello_test.dart").writeTo(elt);
 
@@ -64,7 +65,7 @@ public class TestFieldsTest {
   }
 
   @Test
-  public void roundTripShouldPreserveFileScopeSettings() {
+  public void roundTripShouldPreserveFileScopeSettings() throws InvalidDataException {
     final Element elt = new Element("test");
     TestFields.forFile("hello_test.dart").writeTo(elt);
 
@@ -75,7 +76,7 @@ public class TestFieldsTest {
   }
 
   @Test
-  public void roundTripShouldPreserveDirectoryScopeSettings() {
+  public void roundTripShouldPreserveDirectoryScopeSettings() throws InvalidDataException {
     final Element elt = new Element("test");
     TestFields.forDir("test/dir").writeTo(elt);
 

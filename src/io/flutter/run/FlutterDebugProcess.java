@@ -94,10 +94,10 @@ public class FlutterDebugProcess extends DartVmServiceDebugProcessZ {
     final Computable<Boolean> isSessionActive = () -> app.isStarted() && getVmConnected() && !getSession().isStopped();
     final Computable<Boolean> canReload = () -> app.getMode().isReloadEnabled() && isSessionActive.compute();
 
-    if (app.getMode() == RunMode.DEBUG) {
-      topToolbar.addSeparator();
-      topToolbar.addAction(new FlutterPopFrameAction());
-    }
+    //if (app.getMode() == RunMode.DEBUG) {
+    //  topToolbar.addSeparator();
+    //  topToolbar.addAction(new FlutterPopFrameAction());
+    //}
 
     topToolbar.addSeparator();
     topToolbar.addAction(new ReloadFlutterApp(app, canReload));

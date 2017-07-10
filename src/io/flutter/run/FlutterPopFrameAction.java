@@ -29,16 +29,18 @@ public class FlutterPopFrameAction extends AnAction implements DumbAware {
     presentation.setIcon(AllIcons.Actions.PopFrame);
   }
 
+  @SuppressWarnings("override") // Not in 2016.2
   public void actionPerformed(@NotNull AnActionEvent e) {
     final DartVmServiceStackFrame frame = getStackFrame(e);
     if (frame != null) {
-      frame.dropFrame();
+      //frame.dropFrame();
     }
   }
 
+  @SuppressWarnings("override") // Not in 2016.2
   public void update(@NotNull AnActionEvent e) {
     final DartVmServiceStackFrame frame = getStackFrame(e);
-    final boolean enabled = frame != null && frame.canDrop();
+    final boolean enabled = frame != null; // && frame.canDrop();
 
     if (ActionPlaces.isMainMenuOrActionSearch(e.getPlace()) || ActionPlaces.DEBUGGER_TOOLBAR.equals(e.getPlace())) {
       e.getPresentation().setEnabled(enabled);

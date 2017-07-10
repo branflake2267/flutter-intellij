@@ -69,7 +69,7 @@ public class FlutterPubspecNotificationProvider extends EditorNotifications.Prov
     @NotNull final VirtualFile myFile;
 
     FlutterPubspecActionsPanel(@NotNull VirtualFile file) {
-      super(EditorColors.GUTTER_BACKGROUND);
+      super(/*EditorColors.GUTTER_BACKGROUND*/);
 
       myFile = file;
 
